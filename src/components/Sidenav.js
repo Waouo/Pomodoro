@@ -5,19 +5,19 @@ const Sidenav = () => {
     <nav id="sidenav">
       <h1 className="title text-light rotate-left-90">POMODORO</h1>
       <button
-        className="sidenav-btn btn-lg btn-transparent"
+        className="sidenav-btn btn-lg bgc-transparent"
         id="btn-schedule"
       ></button>
       <button
-        className="sidenav-btn btn-lg btn-transparent"
+        className="sidenav-btn btn-lg bgc-transparent"
         id="btn-list"
       ></button>
       <button
-        className="sidenav-btn btn-lg btn-transparent"
+        className="sidenav-btn btn-lg bgc-transparent"
         id="btn-assessment"
       ></button>
       <button
-        className="sidenav-btn btn-lg btn-transparent"
+        className="sidenav-btn btn-lg bgc-transparent"
         id="btn-music"
       ></button>
     </nav>
