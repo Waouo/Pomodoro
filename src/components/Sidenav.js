@@ -3,11 +3,23 @@ import React from 'react'
 const Sidenav = () => {
   return (
     <nav id="sidenav">
-      <h1 className="sidenav-title">POMODORO</h1>
-      <button className="sidenav-btn" id="sidenav-schedule"></button>
-      <button className="sidenav-btn" id="sidenav-list"></button>
-      <button className="sidenav-btn" id="sidenav-assessment"></button>
-      <button className="sidenav-btn" id="sidenav-music"></button>
+      <h1 className="title text-light rotate-left-90">POMODORO</h1>
+      <button
+        className="sidenav-btn btn-lg btn-transparent"
+        id="btn-schedule"
+      ></button>
+      <button
+        className="sidenav-btn btn-lg btn-transparent"
+        id="btn-list"
+      ></button>
+      <button
+        className="sidenav-btn btn-lg btn-transparent"
+        id="btn-assessment"
+      ></button>
+      <button
+        className="sidenav-btn btn-lg btn-transparent"
+        id="btn-music"
+      ></button>
     </nav>
   )
 }

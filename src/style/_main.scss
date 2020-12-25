@@ -7,44 +7,59 @@ main {
   padding: 0px;
   margin: 0px;
   background: $backgroundColor;
-  opacity: 0.8;
   font-size: 20px;
+  opacity: 0.8;
 }
 
-#main-clock {
+.clock {
   position: absolute;
-  display: flex;
-  align-items: center;
   top: 7em;
   left: 16em;
   width: 50%;
-  padding-bottom: 0.5em;
-  border-bottom: 1em solid #ffffff;
+
+  .title {
+    position: relative;
+    left: 3em;
+  }
 }
 
-#clock-display {
+.clock-display {
   margin-left: 0.1em;
   text-align: center;
+  letter-spacing: 0px;
   font: normal normal bold 70px/92px Roboto;
-  letter-spacing: 0px;
-  color: #ffffff;
-  opacity: 1;
-}
-
-#clock-title {
-  position: relative;
-  left: 3em;
-  text-align: left;
-  font: normal normal bold 33px/45px Roboto;
-  letter-spacing: 0px;
-  color: #ffffff;
-  text-transform: uppercase;
-  opacity: 1;
 }
 
 .clock-button {
   width: 60px;
   height: 60px;
   background: url(../images/baseline-play_circle_filled-24px.svg) 0% 0% no-repeat padding-box;
-  opacity: 1;
+}
+
+.todo {
+  width: 50%;
+  position: absolute;
+  top: 20em;
+  left: 16em;
+}
+
+.new-todo {
+  width: 100%;
+}
+
+.todo-input {
+  width: 88%;
+  padding-left: 1.5em;
+  font: normal normal normal 20px/26px Roboto;
+  background-color: rgba(255, 255, 255, 0);
+  text-transform: uppercase;
+  border: 3px solid #ffffff;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.add-todo-btn {
+  background-image: url(../images/round-add_circle-24px.svg);
 }

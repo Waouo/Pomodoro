@@ -8,49 +8,37 @@ $sidenavWidth: percentage(180/1280);
   height: 100vh;
   background: $backgroundColor;
   box-shadow: 0px 0px 20px #44444480;
-  opacity: 1;
   font-size: 20px;
 
-  .sidenav-title {
+  .title {
     position: absolute;
     top: 190px;
     width: 180px;
     height: 50px;
-    transform: matrix(0, -1, 1, 0, 0, 0);
-    font: normal normal bold 30px/60px Roboto,safari,sans-serif;
-    
-    line-height: 50px;
-    text-align: center;
-    letter-spacing: 0px;
-    color: #ffffff;
-    opacity: 1;
   }
+}
 
-  .sidenav-btn {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    left: 65px;
-    background: rgba(255, 255, 255, 0);
-  }
+.sidenav-btn {
+  position: absolute;
+  left: 65px;
+}
 
-  #sidenav-schedule {
-    top: 400px;
-    background-image: url(../images/round-schedule-24px.svg);
-  }
+#btn-schedule {
+  top: 400px;
+  background-image: url(../images/round-schedule-24px.svg);
+}
 
-  #sidenav-list {
-    top: 484px;
-    background-image: url(../images/round-list-24px.svg);
-  }
+#btn-list {
+  top: 484px;
+  background-image: url(../images/round-list-24px.svg);
+}
 
-  #sidenav-assessment {
-    top: 566px;
-    background-image: url(../images/round-assessment-24px.svg);
-  }
+#btn-assessment {
+  top: 566px;
+  background-image: url(../images/round-assessment-24px.svg);
+}
 
-  #sidenav-music {
-    top: 650px;
-    background-image: url(../images/round-library_music-24px.svg);
-  }
+#btn-music {
+  top: 650px;
+  background-image: url(../images/round-library_music-24px.svg);
 }

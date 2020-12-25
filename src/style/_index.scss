@@ -1,10 +1,10 @@
 html {
   overflow: hidden;
+  font-family: Roboto, safari, monospace;
 }
 
 button {
   border: none;
-  opacity: 1;
   background-repeat: no-repeat;
 
   &:hover {
@@ -15,3 +15,4 @@ button {
     outline: none;
   }
 }
+
