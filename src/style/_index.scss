@@ -1,0 +1,17 @@
+html {
+  overflow: hidden;
+}
+
+button {
+  border: none;
+  opacity: 1;
+  background-repeat: no-repeat;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
