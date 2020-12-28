@@ -23,22 +23,18 @@ $sidenavWidth: percentage(180/1280);
   left: 65px;
 }
 
-#btn-schedule {
+.btn-schedule {
   top: 400px;
-  background-image: url(../images/round-schedule-24px.svg);
 }
 
-#btn-list {
+.btn-list {
   top: 484px;
-  background-image: url(../images/round-list-24px.svg);
 }
 
-#btn-assessment {
+.btn-assessment {
   top: 566px;
-  background-image: url(../images/round-assessment-24px.svg);
 }
 
-#btn-music {
+.btn-music {
   top: 650px;
-  background-image: url(../images/round-library_music-24px.svg);
 }

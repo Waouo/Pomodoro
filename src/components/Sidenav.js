@@ -4,22 +4,10 @@ const Sidenav = () => {
   return (
     <nav id="sidenav">
       <h1 className="title text-light rotate-left-90">POMODORO</h1>
-      <button
-        className="sidenav-btn btn-lg bgc-transparent"
-        id="btn-schedule"
-      ></button>
-      <button
-        className="sidenav-btn btn-lg bgc-transparent"
-        id="btn-list"
-      ></button>
-      <button
-        className="sidenav-btn btn-lg bgc-transparent"
-        id="btn-assessment"
-      ></button>
-      <button
-        className="sidenav-btn btn-lg bgc-transparent"
-        id="btn-music"
-      ></button>
+      <button className=" sidenav-btn btn-schedule icon-schedule btn-lg bg-transparent"></button>
+      <button className="sidenav-btn btn-list icon-list btn-lg bg-transparent"></button>
+      <button className="sidenav-btn btn-assessment icon-assessment  btn-lg bg-transparent"></button>
+      <button className="sidenav-btn btn-music icon-music btn-lg bg-transparent"></button>
     </nav>
   )
 }

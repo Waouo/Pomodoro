@@ -1,39 +1,61 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import preLoadImgPause from '../images/baseline-pause_circle_filled-24px.svg'
 
 let countDownTimer
 
-const CountDownTimer = ({ onTimeUp }) => {
+const CountDownTimer = () => {
   const [countDownSecond, setCountDownSecond] = useState(1500)
-  const [remainSeconds, setRemainSeconds] = useState(1500)
-  const [timerState, setTimerState] = useState(false)
+  const [isTimerRun, setIsTimerRun] = useState(false)
 
   useEffect(() => {
-    if (timerState) {
+    // const preLoadImgPause = new Image()
+    // preLoadImgPause.src = path.resolve(
+    //   __dirname,
+    //   'baseline-pause_circle_filled-24px.svg'
+    // )
+    console.log(preLoadImgPause)
+  }, [])
+
+  useEffect(() => {
+    if (isTimerRun) {
       const startTime = Date.now()
       countDownTimer = setInterval(() => {
         const pastSeconds = (Date.now() - startTime) / 1000
         const remain = countDownSecond - pastSeconds
-        setRemainSeconds(remain >= 0 ? remain : 0)
+        setCountDownSecond(remain >= 0 ? remain : 0)
       }, 1)
     } else {
       clearInterval(countDownTimer)
     }
     return () => clearInterval(countDownTimer)
-  }, [timerState])
+  }, [isTimerRun])
 
   const toggleTimer = () => {
-    setTimerState(!timerState)
+    setIsTimerRun(!isTimerRun)
+  }
+
+  const icon = isTimerRun ? 'icon-pause' : 'icon-play'
+
+  const style = {
+    backgroundColor: 'white',
   }
 
   return (
-    <div className="clock d-flex align-items-center border-bot-light">
-      <button className="clock-button btn-lg" onClick={toggleTimer}></button>
-      <h2 className="clock-display text-light">
-        {new Date(remainSeconds * 1000).toISOString().substr(14, 5)}
-      </h2>
-      <h2 className="title text-light">The First Thing To Do Today</h2>
-    </div>
+    <>
+      {/* <div
+        className="icon-pause"
+        style={{display: 'none'}}
+      ></div> */}
+      <div className="clock d-flex align-items-center border-bot-light">
+        <button className={`${icon} btn-lg`} onClick={toggleTimer}></button>
+        <h2 className="clock-display text-light">
+          {new Date(countDownSecond * 1000).toISOString().substr(14, 5)}
+        </h2>
+        <h2 className="title text-light">The First Thing To Do Today</h2>
+      </div>
+      <div className="progress-bar" style={style}></div>
+    </>
   )
 }
 

@@ -39,6 +39,35 @@
   height: 60px;
 }
 
-.bgc-transparent {
+.bg-transparent {
   background-color: rgba(255, 255, 255, 0);
+}
+
+.icon-schedule {
+  background-image: url(../images/round-schedule-24px.svg);
+}
+
+.icon-list {
+  background-image: url(../images/round-list-24px.svg);
+}
+
+.icon-assessment {
+  background-image: url(../images/round-assessment-24px.svg);
+}
+
+.icon-music {
+  background-image: url(../images/round-library_music-24px.svg);
+}
+
+.icon-add {
+  background-image: url(../images/round-add_circle-24px.svg);
+}
+
+.icon-play {
+  background: url(../images/baseline-play_circle_filled-24px.svg) 0% 0%
+    no-repeat padding-box;
+}
+
+.icon-pause {
+  background: url(../images/baseline-pause_circle_filled-24px.svg);
 }

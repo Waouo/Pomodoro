@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import CountDownTimer from './CountDownTimer'
 
 const Main = () => {
@@ -12,9 +12,9 @@ const Main = () => {
           <input
             type="text"
             placeholder="ADD A NEW MiSSION..."
-            className="todo-input text-light bgc-transparent"
+            className="todo-input text-light bg-transparent"
           />
-          <button className="add-btn btn-md bgc-transparent"></button>
+          <button className="icon-add btn-md bg-transparent"></button>
         </div>
       </div>
     </main>
