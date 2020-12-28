@@ -7,7 +7,7 @@ const isDev = false
 module.exports = {
   mode: 'development',
   entry: './src/index.js',
-  devtool: isDev ? false : 'eval-cheap-module-source-map',
+  devtool: isDev ? false : 'source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -21,8 +21,8 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
             options: { publicPath: '../' },
           },
-          'css-loader',
-          'sass-loader',
+          { loader: 'css-loader', options: { sourceMap: true } },
+          { loader: 'sass-loader', options: { sourceMap: true } },
         ],
       },
       {
