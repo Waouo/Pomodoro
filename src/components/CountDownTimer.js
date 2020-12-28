@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+
+const body = document.querySelector('body')
 
 const CountDownTimer = () => {
   const [timerState, setTimerState] = useState('work') // timerState: work | break
@@ -24,6 +26,10 @@ const CountDownTimer = () => {
       setIsTimerRun(false)
       setCountDownSecond(10)
       setTimerState(timerState === 'work' ? 'work' : 'break')
+    }
+
+    if (timerState === 'break') {
+      body.style.background = 'yellow'
     }
 
     return () => clearInterval(countDownTimer)

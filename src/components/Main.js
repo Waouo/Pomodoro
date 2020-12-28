@@ -1,4 +1,3 @@
-import React from 'react'
 import CountDownTimer from './CountDownTimer'
 
 const Main = () => {
