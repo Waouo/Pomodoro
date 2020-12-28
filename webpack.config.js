@@ -30,7 +30,7 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: { name: '[name].[ext]' },
+            options: { name: 'images/[name].[ext]' },
           },
         ],
       },
@@ -59,6 +59,6 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.json','scss'],
+    extensions: ['.js', '.jsx', '.json', 'scss'],
   },
 }

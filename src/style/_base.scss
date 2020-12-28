@@ -3,6 +3,10 @@ html {
   font-family: Roboto, safari, monospace;
 }
 
+// body:after {
+//   content: url('../images/baseline-pause_circle_filled-24px.svg');
+// }
+
 button {
   border: none;
   background-repeat: no-repeat;
@@ -15,4 +19,3 @@ button {
     outline: none;
   }
 }
-
