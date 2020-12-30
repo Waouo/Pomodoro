@@ -1,39 +1,35 @@
-import { useEffect, useState } from 'react'
+/* eslint-disable react/prop-types */
+import { useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-
-const body = document.querySelector('body')
+import ContextStore from '../ContextStore'
 
 const CountDownTimer = () => {
-  const [timerState, setTimerState] = useState('work') // timerState: work | break
   const [isTimerRun, setIsTimerRun] = useState(false)
   const [countDownSecond, setCountDownSecond] = useState(10)
-
+  const { timerState, setTimerState } = useContext(ContextStore)
   let countDownTimer
 
   useEffect(() => {
+    console.log(timerState, setTimerState)
     if (isTimerRun) {
       const startTime = Date.now()
-      countDownTimer = setInterval(() => {
+      countDownTimer = setTimeout(() => {
         const pastSeconds = (Date.now() - startTime) / 1000
         const remain = countDownSecond - pastSeconds
         setCountDownSecond(remain >= 0 ? remain : 0)
       }, 100)
     } else {
-      clearInterval(countDownTimer)
+      clearTimeout(countDownTimer)
     }
 
     if (countDownSecond <= 0) {
       setIsTimerRun(false)
       setCountDownSecond(10)
-      setTimerState(timerState === 'work' ? 'work' : 'break')
+      setTimerState(timerState === 'work' ? 'break' : 'work')
     }
 
-    if (timerState === 'break') {
-      body.style.background = 'yellow'
-    }
-
-    return () => clearInterval(countDownTimer)
-  }, [isTimerRun, countDownSecond])
+    return () => clearTimeout(countDownTimer)
+  }, [isTimerRun, countDownSecond, timerState])
 
   const toggleTimer = () => {
     setIsTimerRun(!isTimerRun)
