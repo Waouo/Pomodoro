@@ -10,7 +10,6 @@ const CountDownTimer = () => {
   let countDownTimer
 
   useEffect(() => {
-    console.log(timerState, setTimerState)
     if (isTimerRun) {
       const startTime = Date.now()
       countDownTimer = setTimeout(() => {

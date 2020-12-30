@@ -1,15 +1,16 @@
 html {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
   font-family: Roboto, safari, monospace;
+  height: 100%;
 }
 
-// body:after {
-//   content: url('../images/baseline-pause_circle_filled-24px.svg');
-// }
+body {
+  height: 100%;
+}
 
 button {
   border: none;
-  background-repeat: no-repeat;
 
   &:hover {
     cursor: pointer;

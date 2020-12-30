@@ -39,24 +39,36 @@
   height: 60px;
 }
 
+.opacity-half {
+  opacity: 0.5;
+}
+
 .bg-transparent {
   background-color: rgba(255, 255, 255, 0);
 }
 
 $icon-background: (
-  schedule: url(../images/round-schedule-24px.svg),
-  list: url(../images/round-list-24px.svg),
-  assessment: url(../images/round-assessment-24px.svg),
-  music: url(../images/round-library_music-24px.svg),
-  add: url(../images/round-add_circle-24px.svg),
+  schedule: url(../images/round-schedule-24px.svg) no-repeat,
+  list: url(../images/round-list-24px.svg) no-repeat,
+  assessment: url(../images/round-assessment-24px.svg) no-repeat,
+  music: url(../images/round-library_music-24px.svg) no-repeat,
+  add: url(../images/round-add_circle-24px.svg) no-repeat,
   play: url(../images/baseline-play_circle_filled-24px.svg) 0% 0% no-repeat
+    padding-box,
+  play-sm: url(../images/baseline-play_circle_filled_sm-24px.svg) 0% 0% no-repeat
     padding-box,
   pause: url(../images/baseline-pause_circle_filled-24px.svg) 0% 0% no-repeat
     padding-box,
+  radio: transparent url(../images/round-radio_button_unchecked-24px.svg) 0% 0%
+    no-repeat padding-box,
 );
 
 @each $key, $value in $icon-background {
   .icon-#{$key} {
     background: $value;
   }
+}
+
+.pd-l-3 {
+  padding-left: 1em;
 }

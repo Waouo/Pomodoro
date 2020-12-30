@@ -1,9 +1,10 @@
 main {
-  position: absolute;
+  position: relative;
   top: 0px;
   left: 180px;
   width: 100%;
   height: 100vh;
+  min-height: 100%;
   background: $backgroundColor;
   font-size: 20px;
   opacity: 0.8;
@@ -28,22 +29,28 @@ main {
   font: normal normal bold 70px/92px Roboto;
 }
 
-.todo {
-  position: absolute;
+.todo-section {
+  position: relative;
   top: 20em;
   left: 16em;
   width: 50%;
+  flex-wrap: wrap;
 }
 
 .new-todo {
   width: 100%;
+  padding-bottom: 2em;
+}
+
+.todo-input,
+.todo-list {
+  font: normal normal normal 20px/26px Roboto;
+  text-transform: uppercase;
 }
 
 .todo-input {
   width: 88%;
   padding-left: 1.5em;
-  font: normal normal normal 20px/26px Roboto;
-  text-transform: uppercase;
   border: 3px solid #ffffff;
 
   &::placeholder {
@@ -52,15 +59,9 @@ main {
 }
 
 .todo-list {
-  width: 88%;
-  padding-left: 1.5em;
-  font: normal normal normal 20px/26px Roboto;
-  text-transform: uppercase;
-  border: 3px solid #ffffff;
-
-  &::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-  }
+  width: 100%;
+  padding: 1em 0;
+  border-bottom: 3px solid #ffffff;
 }
 
 .progress-bar-container {
