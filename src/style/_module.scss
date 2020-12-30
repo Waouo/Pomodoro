@@ -21,6 +21,9 @@
   align-items: center;
 }
 
+.justify-content-center {
+  justify-content: center;
+}
 
 .justify-content-sb {
   justify-content: space-between;
@@ -40,32 +43,20 @@
   background-color: rgba(255, 255, 255, 0);
 }
 
-.icon-schedule {
-  background-image: url(../images/round-schedule-24px.svg);
-}
+$icon-background: (
+  schedule: url(../images/round-schedule-24px.svg),
+  list: url(../images/round-list-24px.svg),
+  assessment: url(../images/round-assessment-24px.svg),
+  music: url(../images/round-library_music-24px.svg),
+  add: url(../images/round-add_circle-24px.svg),
+  play: url(../images/baseline-play_circle_filled-24px.svg) 0% 0% no-repeat
+    padding-box,
+  pause: url(../images/baseline-pause_circle_filled-24px.svg) 0% 0% no-repeat
+    padding-box,
+);
 
-.icon-list {
-  background-image: url(../images/round-list-24px.svg);
-}
-
-.icon-assessment {
-  background-image: url(../images/round-assessment-24px.svg);
-}
-
-.icon-music {
-  background-image: url(../images/round-library_music-24px.svg);
-}
-
-.icon-add {
-  background-image: url(../images/round-add_circle-24px.svg);
-}
-
-.icon-play {
-  background: url(../images/baseline-play_circle_filled-24px.svg) 0% 0%
-    no-repeat padding-box;
-}
-
-.icon-pause {
-  background: url(../images/baseline-pause_circle_filled-24px.svg) 0% 0%
-    no-repeat padding-box;
+@each $key, $value in $icon-background {
+  .icon-#{$key} {
+    background: $value;
+  }
 }
