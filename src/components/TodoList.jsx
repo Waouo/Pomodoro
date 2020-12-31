@@ -1,14 +1,29 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import ContextStore from '../ContextStore'
+import { v4 as uuid } from 'uuid'
 
 const TodoList = () => {
-  const [todoList, setTodoList] = useState(['first-thing', 'second-thing'])
+  const { todoList, setTodoList } = useContext(ContextStore)
   const [inputContent, setInputContent] = useState('')
 
   const addTodo = (e) => {
     e.preventDefault()
+
     if (inputContent.trim() === '') return
-    setTodoList([...todoList, inputContent])
+
+    const newThing = {
+      id: uuid(),
+      inputContent,
+    }
+
+    setTodoList({ ...todoList, newThing })
     setInputContent('')
+  }
+
+  const removeTodo = (id) => {
+    const newList = todoList.filter((thing) => thing.id !== id)
+
+    setTodoList(newList)
   }
 
   return (
@@ -25,18 +40,24 @@ const TodoList = () => {
           <button type="submit" className="icon-add btn-md bg-transparent" />
         </form>
 
-        {todoList.map((thing, index) => (
-          <div
-            className="todo-list d-flex align-items-center justify-content-sb"
-            key={index}
-          >
-            <div className="d-flex align-items-center">
-              <button type="radio" className="icon-radio btn-md"></button>
-              <p className="text-light pd-l-3">{thing}</p>
-            </div>
-            <button className="icon-play-sm btn-md opacity-half" />
-          </div>
-        ))}
+        <ul className="todo-list">
+          {todoList.map((thing) => (
+            <li
+              key={thing.id}
+              className="todo-thing d-flex align-items-center justify-content-sb"
+            >
+              <div className="d-flex align-items-center">
+                <button
+                  type="radio"
+                  className="icon-radio btn-md"
+                  onClick={() => removeTodo(thing.id)}
+                />
+                <p className="text-light pd-l-3">{thing.text}</p>
+              </div>
+              <button className="icon-play-sm btn-md opacity-half" />
+            </li>
+          ))}
+        </ul>
       </section>
     </>
   )
