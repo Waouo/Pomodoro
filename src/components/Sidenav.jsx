@@ -1,8 +1,7 @@
-import { useContext } from 'react'
-import ContextStore from '../ContextStore'
+import { useSelector } from 'react-redux'
 
 const Sidenav = () => {
-  const { timerState } = useContext(ContextStore)
+  const timerState = useSelector((state) => state.timerState)
 
   const background =
     timerState === 'work'

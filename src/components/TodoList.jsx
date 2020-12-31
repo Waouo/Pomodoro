@@ -1,52 +1,51 @@
-import { useContext, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import ContextStore from '../ContextStore'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuid } from 'uuid'
 import {
   TODO_LIST_ADD_TODO,
   TODO_LIST_REMOVE_TODO,
+  TODO_LIST_CHANGE_TODO,
+  RUNNING_TODO,
 } from '../constant/constants'
 
 const TodoList = () => {
-  const { todoList, setTodoList, selectedThing, setSelectedThing } = useContext(
-    ContextStore
-  )
   const [input, setInput] = useState('')
 
   const dispatch = useDispatch()
 
-  const handleSelect = (thing) => {
-    const newTodoList = todoList.map((todoThing) => {
-      if (todoThing.id === thing.id) {
-        return selectedThing
+  const todoList = useSelector((state) => state.todoList)
+
+  const handleSelect = (selectedTodo) => {
+    const newTodoList = todoList.map((todo) => {
+      if (todo.id === selectedTodo.id) {
+        return selectedTodo
       }
 
-      return todoThing
+      return todo
     })
 
-    setTodoList(newTodoList)
-    setSelectedThing(thing)
+    dispatch({ type: TODO_LIST_CHANGE_TODO, payload: newTodoList })
+    dispatch({ type: RUNNING_TODO, payload: selectedTodo })
   }
 
   const handleAdd = (e) => {
     e.preventDefault()
 
-    if (input.trim() === '') {
-      return
-    }
+    if (input.trim() === '')  return
 
-    const newThing = {
+    const newTodo = {
       id: uuid(),
       text: input,
     }
 
-    dispatch({ type: TODO_LIST_ADD_TODO, payload: newThing })
+    dispatch({ type: TODO_LIST_ADD_TODO, payload: newTodo })
     setInput('')
   }
 
   const handleRemove = (id) => {
-    dispatch({ type: TODO_LIST_REMOVE_TODO, payload: newThing })
-    setTodoList(todoList.filter((thing) => thing.id !== id))
+    const removedTodoList = todoList.filter((todo) => todo.id !== id)
+
+    dispatch({ type: TODO_LIST_REMOVE_TODO, payload: removedTodoList })
   }
 
   return (
@@ -67,22 +66,22 @@ const TodoList = () => {
         </form>
 
         <ul className="todo-list">
-          {todoList.map((thing) => (
+          {todoList.map((todo) => (
             <li
-              key={thing.id}
+              key={todo.id}
               className="todo-thing d-flex align-items-center justify-content-sb"
             >
               <div className="d-flex align-items-center">
                 <button
                   type="radio"
                   className="icon-radio btn-md"
-                  onClick={() => handleRemove(thing.id)}
+                  onClick={() => handleRemove(todo.id)}
                 />
-                <p className="text-light pd-l-3">{thing.text}</p>
+                <p className="text-light pd-l-3">{todo.text}</p>
               </div>
               <button
                 className="icon-play-sm btn-md opacity-half"
-                onClick={() => handleSelect(thing)}
+                onClick={() => handleSelect(todo)}
               />
             </li>
           ))}

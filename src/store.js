@@ -1,11 +1,19 @@
 import { createStore, combineReducers} from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { todoListReducer } from './reducer/todoListReducer'
+import {
+  todoListReducer,
+  timerStateReducer,
+  modeReducer,
+  runningTodoReducer,
+} from './reducer/Reducers'
 
 
   
 const reducer = combineReducers({
- todoList: todoListReducer
+  timerState: timerStateReducer,
+  mode: modeReducer,
+  todoList: todoListReducer,
+  runningTodo: runningTodoReducer,
 })
 
 // const cartItemsFromStorage = localStorage.getItem('cartItems')

@@ -1,32 +1,39 @@
 /* eslint-disable react/prop-types */
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
-import ContextStore from '../ContextStore'
+import {
+  TIMER_STATE_ON,
+  TIMER_STATE_OFF,
+  MODE_WORK,
+  MODE_BREAK,
+} from '../constant/constants'
 
 const CountDownTimer = () => {
-  const [isTimerRun, setIsTimerRun] = useState(false)
   const [countDownSecond, setCountDownSecond] = useState(10)
-  const {
-    timerState,
-    setTimerState,
-    todoList,
-    setTodoList,
-    selectedThing,
-    setSelectedThing,
-  } = useContext(ContextStore)
+
+  const dispatch = useDispatch()
+
+  const timerState = useSelector((state) => state.timerState)
+
+  const mode = useSelector((state) => state.mode)
+
   let countDownTimer
 
-  useEffect(() => {
-    setSelectedThing(todoList[0])
-    setTodoList(todoList.filter((thing) => thing.id !== todoList[0].id))
-  }, [])
+  //TODO useEffect(() => {
+  //   setSelectedThing(todoList[0])
+  //   setTodoList(todoList.filter((thing) => thing.id !== todoList[0].id))
+  // }, [])
 
   useEffect(() => {
-    if (isTimerRun) {
+    if (timerState === 'on') {
       const startTime = Date.now()
+
       countDownTimer = setTimeout(() => {
         const pastSeconds = (Date.now() - startTime) / 1000
+
         const remain = countDownSecond - pastSeconds
+
         setCountDownSecond(remain >= 0 ? remain : 0)
       }, 100)
     } else {
@@ -34,27 +41,29 @@ const CountDownTimer = () => {
     }
 
     if (countDownSecond <= 0) {
-      setIsTimerRun(false)
+      dispatch({type: TIMER_STATE_OFF})
       setCountDownSecond(10)
-      setTimerState(timerState === 'work' ? 'break' : 'work')
+      mode === 'work'
+        ? dispatch({ type: MODE_WORK })
+        : dispatch({ type: MODE_BREAK })
     }
 
     return () => clearTimeout(countDownTimer)
-  }, [isTimerRun, countDownSecond, timerState])
+  }, [timerState, countDownSecond])
 
   const toggleTimer = () => {
-    setIsTimerRun(!isTimerRun)
+    timerState === 'off'
+      ? dispatch({ type: TIMER_STATE_ON })
+      : dispatch({ type: TIMER_STATE_OFF })
   }
 
-  const icon = isTimerRun ? 'icon-pause' : 'icon-play'
+  const icon = timerState === 'on' ? 'icon-pause' : 'icon-play'
 
   const calcProgressPercentage = (time) =>
     (Math.round((countDownSecond / time) * 10000) / 100).toString()
 
   const progressPercentage =
-    timerState === 'work'
-      ? calcProgressPercentage(1500)
-      : calcProgressPercentage(300)
+    mode === 'work' ? calcProgressPercentage(1500) : calcProgressPercentage(300)
 
   const progressBarStyle = {
     width: progressPercentage + '%',
@@ -74,7 +83,8 @@ const CountDownTimer = () => {
           <h2 className="clock-display text-light">
             {new Date(countDownSecond * 1000).toISOString().substr(14, 5)}
           </h2>
-          <h2 className="title text-light">{selectedThing.text}</h2>
+
+          <h2 className="title text-light">fist{/*TODO  */}</h2>
         </div>
         <div className="progress-bar-container">
           <div className="progress-bar" style={progressBarStyle} />
