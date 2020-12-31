@@ -9,6 +9,7 @@ $sidenavWidth: percentage(180/1280);
   background: $backgroundColor;
   box-shadow: 0px 0px 20px #44444480;
   font-size: 20px;
+  z-index: 2;
 
   .title {
     position: absolute;

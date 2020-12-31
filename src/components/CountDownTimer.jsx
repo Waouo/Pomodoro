@@ -36,9 +36,13 @@ const CountDownTimer = () => {
 
   const icon = isTimerRun ? 'icon-pause' : 'icon-play'
 
-  const progressPercentage = (
-    Math.round((countDownSecond / 1500) * 10000) / 100
-  ).toString()
+  const calcProgressPercentage = (time) =>
+    (Math.round((countDownSecond / time) * 10000) / 100).toString()
+
+  const progressPercentage =
+    timerState === 'work'
+      ? calcProgressPercentage(1500)
+      : calcProgressPercentage(300)
 
   const progressBarStyle = {
     width: progressPercentage + '%',
@@ -46,21 +50,24 @@ const CountDownTimer = () => {
 
   return (
     <>
-      {/* preload icon image*/}
+      {/** preload icon image **/}
       <div
         className="icon-pause"
         style={{ position: 'absolute', top: '-9999px', left: '-9999px' }}
       ></div>
-      <div className="clock d-flex align-items-center">
-        <button className={`${icon} btn-lg`} onClick={toggleTimer}></button>
-        <h2 className="clock-display text-light">
-          {new Date(countDownSecond * 1000).toISOString().substr(14, 5)}
-        </h2>
-        <h2 className="title text-light">The First Thing To Do Today</h2>
-      </div>
-      <div className="progress-bar-container">
-        <div className="progress-bar" style={progressBarStyle} />
-      </div>
+      {/** preload icon image **/}
+      <section className="clock-section">
+        <div className="d-flex align-items-center">
+          <button className={`${icon} btn-lg`} onClick={toggleTimer}></button>
+          <h2 className="clock-display text-light">
+            {new Date(countDownSecond * 1000).toISOString().substr(14, 5)}
+          </h2>
+          <h2 className="title text-light">The First Thing To Do Today</h2>
+        </div>
+        <div className="progress-bar-container">
+          <div className="progress-bar" style={progressBarStyle} />
+        </div>
+      </section>
     </>
   )
 }

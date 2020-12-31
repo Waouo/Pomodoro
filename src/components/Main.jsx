@@ -12,7 +12,10 @@ const Main = () => {
       : 'transparent linear-gradient(180deg, #0AB6A2 0%, #009987 100%) 0% 0% no-repeat padding-box'
 
   return (
-    <main style={{ background }}>
+    <main
+      className="justify-content-center align-items-center"
+      style={{ background }}
+    >
       <CountDownTimer />
       <TodoList />
     </main>
