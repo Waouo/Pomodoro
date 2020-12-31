@@ -6,8 +6,20 @@ import ContextStore from '../ContextStore'
 const CountDownTimer = () => {
   const [isTimerRun, setIsTimerRun] = useState(false)
   const [countDownSecond, setCountDownSecond] = useState(10)
-  const { timerState, setTimerState } = useContext(ContextStore)
+  const {
+    timerState,
+    setTimerState,
+    todoList,
+    setTodoList,
+    selectedThing,
+    setSelectedThing,
+  } = useContext(ContextStore)
   let countDownTimer
+
+  useEffect(() => {
+    setSelectedThing(todoList[0])
+    setTodoList(todoList.filter((thing) => thing.id !== todoList[0].id))
+  }, [])
 
   useEffect(() => {
     if (isTimerRun) {
@@ -62,7 +74,7 @@ const CountDownTimer = () => {
           <h2 className="clock-display text-light">
             {new Date(countDownSecond * 1000).toISOString().substr(14, 5)}
           </h2>
-          <h2 className="title text-light">The First Thing To Do Today</h2>
+          <h2 className="title text-light">{selectedThing.text}</h2>
         </div>
         <div className="progress-bar-container">
           <div className="progress-bar" style={progressBarStyle} />

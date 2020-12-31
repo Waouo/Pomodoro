@@ -1,41 +1,67 @@
 import { useContext, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import ContextStore from '../ContextStore'
 import { v4 as uuid } from 'uuid'
+import {
+  TODO_LIST_ADD_TODO,
+  TODO_LIST_REMOVE_TODO,
+} from '../constant/constants'
 
 const TodoList = () => {
-  const { todoList, setTodoList } = useContext(ContextStore)
-  const [inputContent, setInputContent] = useState('')
+  const { todoList, setTodoList, selectedThing, setSelectedThing } = useContext(
+    ContextStore
+  )
+  const [input, setInput] = useState('')
 
-  const addTodo = (e) => {
+  const dispatch = useDispatch()
+
+  const handleSelect = (thing) => {
+    const newTodoList = todoList.map((todoThing) => {
+      if (todoThing.id === thing.id) {
+        return selectedThing
+      }
+
+      return todoThing
+    })
+
+    setTodoList(newTodoList)
+    setSelectedThing(thing)
+  }
+
+  const handleAdd = (e) => {
     e.preventDefault()
 
-    if (inputContent.trim() === '') return
+    if (input.trim() === '') {
+      return
+    }
 
     const newThing = {
       id: uuid(),
-      inputContent,
+      text: input,
     }
 
-    setTodoList({ ...todoList, newThing })
-    setInputContent('')
+    dispatch({ type: TODO_LIST_ADD_TODO, payload: newThing })
+    setInput('')
   }
 
-  const removeTodo = (id) => {
-    const newList = todoList.filter((thing) => thing.id !== id)
-
-    setTodoList(newList)
+  const handleRemove = (id) => {
+    dispatch({ type: TODO_LIST_REMOVE_TODO, payload: newThing })
+    setTodoList(todoList.filter((thing) => thing.id !== id))
   }
 
   return (
     <>
       <section className="todo-section d-flex justify-content-center">
-        <form className="new-todo d-flex justify-content-sb" onSubmit={addTodo}>
+        <form
+          className="new-todo d-flex justify-content-sb"
+          onSubmit={handleAdd}
+        >
           <input
             type="text"
             placeholder="ADD A NEW MiSSION..."
             className="todo-input text-light bg-transparent"
-            value={inputContent}
-            onChange={(e) => setInputContent(e.target.value)}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
           />
           <button type="submit" className="icon-add btn-md bg-transparent" />
         </form>
@@ -50,11 +76,14 @@ const TodoList = () => {
                 <button
                   type="radio"
                   className="icon-radio btn-md"
-                  onClick={() => removeTodo(thing.id)}
+                  onClick={() => handleRemove(thing.id)}
                 />
                 <p className="text-light pd-l-3">{thing.text}</p>
               </div>
-              <button className="icon-play-sm btn-md opacity-half" />
+              <button
+                className="icon-play-sm btn-md opacity-half"
+                onClick={() => handleSelect(thing)}
+              />
             </li>
           ))}
         </ul>
