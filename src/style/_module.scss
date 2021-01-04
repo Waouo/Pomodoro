@@ -48,18 +48,23 @@
 }
 
 $icon-background: (
-  schedule: url(../images/round-schedule-24px.svg) no-repeat,
-  list: url(../images/round-list-24px.svg) no-repeat,
-  assessment: url(../images/round-assessment-24px.svg) no-repeat,
-  music: url(../images/round-library_music-24px.svg) no-repeat,
-  add: url(../images/round-add_circle-24px.svg) no-repeat,
-  play: url(../images/baseline-play_circle_filled-24px.svg) 0% 0% no-repeat
+  schedule: url(../images/schedule.svg) no-repeat,
+  list: url(../images/list.svg) no-repeat,
+  assessment: url(../images/assessment.svg) no-repeat,
+  music: url(../images/music.svg) no-repeat,
+  add: url(../images/add_circle.svg) no-repeat,
+  add-dark: url(../images/add_circle-dark.svg) no-repeat,
+  play: url(../images/play_circle_filled.svg) 0% 0% no-repeat
     padding-box,
-  play-sm: url(../images/baseline-play_circle_filled_sm-24px.svg) 0% 0% no-repeat
+  play-dark: url(../images/play_circle_filled-dark.svg) 0% 0% no-repeat
     padding-box,
-  pause: url(../images/baseline-pause_circle_filled-24px.svg) 0% 0% no-repeat
+  play-sm: url(../images/play_circle_filled_sm.svg) 0% 0% no-repeat
     padding-box,
-  radio: transparent url(../images/round-radio_button_unchecked-24px.svg) 0% 0%
+  pause: url(../images/pause_circle_filled.svg) 0% 0% no-repeat
+    padding-box,
+  radio: transparent url(../images/radio_button_unchecked.svg) 0% 0%
+    no-repeat padding-box,
+  radio-dark: transparent url(../images/radio_button_unchecked-dark.svg) 0% 0%
     no-repeat padding-box,
 );
 

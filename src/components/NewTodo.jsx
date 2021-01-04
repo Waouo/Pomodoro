@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import PropTypes from 'prop-types'
 import { v4 as uuid } from 'uuid'
 import { TODO_LIST_ADD_TODO } from '../constant/constants'
 
-const NewTodo = () => {
+const NewTodo = ({ classTodoInput, classIconAdd }) => {
   const [input, setInput] = useState('')
 
   const dispatch = useDispatch()
@@ -27,13 +28,21 @@ const NewTodo = () => {
       <input
         type="text"
         placeholder="ADD A NEW MiSSION..."
-        className="todo-input text-light bg-transparent"
+        className={`${classTodoInput} text-light bg-transparent`}
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <button type="submit" className="icon-add btn-md bg-transparent" />
+      <button
+        type="submit"
+        className={`${classIconAdd} btn-md bg-transparent`}
+      />
     </form>
   )
+}
+
+NewTodo.propTypes = {
+  classTodoInput: PropTypes.string,
+  classIconAdd: PropTypes.string,
 }
 
 export default NewTodo

@@ -4,7 +4,7 @@ import Sidenav from '../components/Sidenav'
 import NewTodo from '../components/NewTodo'
 import TodoList from '../components/TodoList'
 
-const Main = () => {
+const HomeScreen = () => {
   const mode = useSelector((state) => state.mode)
 
   const background =
@@ -21,14 +21,15 @@ const Main = () => {
       ></div>
       {/** preload icon image **/}
       <Sidenav />
-      <main
-        style={{ background }}
-      >
+      <main style={{ background }}>
         <section className="clock-section">
           <CountDownTimer />
         </section>
         <section className="todo-section d-flex justify-content-center">
-          <NewTodo />
+          <NewTodo
+            classTodoInput={'todo-input-home'}
+            classIconAdd={'icon-add'}
+          />
           <TodoList color={'white'} />
         </section>
       </main>
@@ -36,4 +37,4 @@ const Main = () => {
   )
 }
 
-export default Main
+export default HomeScreen
