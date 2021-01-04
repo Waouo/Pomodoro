@@ -76,25 +76,17 @@ const CountDownTimer = () => {
 
   return (
     <>
-      {/** preload icon image **/}
-      <div
-        className="icon-pause"
-        style={{ position: 'absolute', top: '-9999px', left: '-9999px' }}
-      ></div>
-      {/** preload icon image **/}
-      <section className="clock-section">
-        <div className="d-flex align-items-center">
-          <button className={`${icon} btn-lg`} onClick={toggleTimer}></button>
-          <h2 className="clock-display text-light">
-            {new Date(countDownSecond * 1000).toISOString().substr(14, 5)}
-          </h2>
+      <div className="d-flex align-items-center">
+        <button className={`${icon} btn-lg`} onClick={toggleTimer}></button>
+        <h2 className="clock-display text-light">
+          {new Date(countDownSecond * 1000).toISOString().substr(14, 5)}
+        </h2>
 
-          <h2 className="title text-light">{todoList[0].text}</h2>
-        </div>
-        <div className="progress-bar-container">
-          <div className="progress-bar" style={progressBarStyle} />
-        </div>
-      </section>
+        <h2 className="title text-light">{todoList[0].text}</h2>
+      </div>
+      <div className="progress-bar-container">
+        <div className="progress-bar" style={progressBarStyle} />
+      </div>
     </>
   )
 }

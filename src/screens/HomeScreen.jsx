@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import CountDownTimer from '../components/CountDownTimer'
 import Sidenav from '../components/Sidenav'
+import NewTodo from '../components/NewTodo'
 import TodoList from '../components/TodoList'
 
 const Main = () => {
@@ -13,13 +14,23 @@ const Main = () => {
 
   return (
     <>
+      {/** preload icon image **/}
+      <div
+        className="icon-pause"
+        style={{ position: 'absolute', top: '-9999px', left: '-9999px' }}
+      ></div>
+      {/** preload icon image **/}
       <Sidenav />
       <main
-        className="justify-content-center align-items-center"
         style={{ background }}
       >
-        <CountDownTimer />
-        <TodoList />
+        <section className="clock-section">
+          <CountDownTimer />
+        </section>
+        <section className="todo-section d-flex justify-content-center">
+          <NewTodo />
+          <TodoList color={'white'} />
+        </section>
       </main>
     </>
   )

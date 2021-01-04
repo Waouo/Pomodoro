@@ -1,0 +1,37 @@
+.todo-section {
+  width: 55%;
+  padding-left: 23em;
+  padding-top: 7em;
+  flex-wrap: wrap;
+}
+
+.new-todo {
+  width: 100%;
+  padding-bottom: 2em;
+}
+
+.todo-input,
+.todo-list {
+  font: normal normal normal 20px/26px Roboto;
+  text-transform: uppercase;
+}
+
+.todo-input {
+  width: 88%;
+  padding-left: 1.5em;
+  border: 3px solid #ffffff;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.todo-list {
+  width: 100%;
+  padding: 1em 0;
+}
+
+.todo-thing {
+  width: 100%;
+  padding: 1em 0;
+}
