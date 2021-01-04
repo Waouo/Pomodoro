@@ -16,22 +16,22 @@ const TodoList = () => {
   const todoList = useSelector((state) => state.todoList)
 
   const handleSelect = (selectedTodo) => {
-    const newTodoList = todoList.map((todo) => {
-      if (todo.id === selectedTodo.id) {
-        return selectedTodo
-      }
+    let colonTodoList = [...todoList]
+    let index = colonTodoList.indexOf(selectedTodo)
 
-      return todo
-    })
+    ;[colonTodoList[0], colonTodoList[index]] = [
+      colonTodoList[index],
+      colonTodoList[0],
+    ]
 
-    dispatch({ type: TODO_LIST_CHANGE_TODO, payload: newTodoList })
+    dispatch({ type: TODO_LIST_CHANGE_TODO, payload: colonTodoList })
     dispatch({ type: RUNNING_TODO, payload: selectedTodo })
   }
 
   const handleAdd = (e) => {
     e.preventDefault()
 
-    if (input.trim() === '')  return
+    if (input.trim() === '') return
 
     const newTodo = {
       id: uuid(),
@@ -66,25 +66,28 @@ const TodoList = () => {
         </form>
 
         <ul className="todo-list">
-          {todoList.map((todo) => (
-            <li
-              key={todo.id}
-              className="todo-thing d-flex align-items-center justify-content-sb"
-            >
-              <div className="d-flex align-items-center">
-                <button
-                  type="radio"
-                  className="icon-radio btn-md"
-                  onClick={() => handleRemove(todo.id)}
-                />
-                <p className="text-light pd-l-3">{todo.text}</p>
-              </div>
-              <button
-                className="icon-play-sm btn-md opacity-half"
-                onClick={() => handleSelect(todo)}
-              />
-            </li>
-          ))}
+          {todoList.map((todo, index) => {
+            if (index !== 0)
+              return (
+                <li
+                  key={todo.id}
+                  className="todo-thing d-flex align-items-center justify-content-sb"
+                >
+                  <div className="d-flex align-items-center">
+                    <button
+                      type="radio"
+                      className="icon-radio btn-md"
+                      onClick={() => handleRemove(todo.id)}
+                    />
+                    <p className="text-light pd-l-3">{todo.text}</p>
+                  </div>
+                  <button
+                    className="icon-play-sm btn-md opacity-half"
+                    onClick={() => handleSelect(todo)}
+                  />
+                </li>
+              )
+          })}
         </ul>
       </section>
     </>

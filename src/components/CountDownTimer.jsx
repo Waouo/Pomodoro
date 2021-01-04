@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import PropTypes from 'prop-types'
 import {
   TIMER_STATE_ON,
   TIMER_STATE_OFF,
   MODE_WORK,
   MODE_BREAK,
+  TODO_LIST_REMOVE_TODO,
 } from '../constant/constants'
 
 const CountDownTimer = () => {
@@ -18,12 +18,9 @@ const CountDownTimer = () => {
 
   const mode = useSelector((state) => state.mode)
 
-  let countDownTimer
+  const todoList = useSelector((state) => state.todoList)
 
-  //TODO useEffect(() => {
-  //   setSelectedThing(todoList[0])
-  //   setTodoList(todoList.filter((thing) => thing.id !== todoList[0].id))
-  // }, [])
+  let countDownTimer
 
   useEffect(() => {
     if (timerState === 'on') {
@@ -41,15 +38,23 @@ const CountDownTimer = () => {
     }
 
     if (countDownSecond <= 0) {
-      dispatch({type: TIMER_STATE_OFF})
+      dispatch({ type: TIMER_STATE_OFF })
+
       setCountDownSecond(10)
-      mode === 'work'
-        ? dispatch({ type: MODE_WORK })
-        : dispatch({ type: MODE_BREAK })
+
+      if (mode === 'work') {
+        dispatch({ type: MODE_BREAK })
+
+        const removedFirstTodoList = todoList.filter((_, index) => index !== 0)
+
+        dispatch({ type: TODO_LIST_REMOVE_TODO, payload: removedFirstTodoList })
+      } else {
+        dispatch({ type: MODE_WORK })
+      }
     }
 
     return () => clearTimeout(countDownTimer)
-  }, [timerState, countDownSecond])
+  }, [timerState, countDownSecond, mode, todoList])
 
   const toggleTimer = () => {
     timerState === 'off'
@@ -59,11 +64,11 @@ const CountDownTimer = () => {
 
   const icon = timerState === 'on' ? 'icon-pause' : 'icon-play'
 
-  const calcProgressPercentage = (time) =>
+  const calcPercentage = (time) =>
     (Math.round((countDownSecond / time) * 10000) / 100).toString()
 
   const progressPercentage =
-    mode === 'work' ? calcProgressPercentage(1500) : calcProgressPercentage(300)
+    mode === 'work' ? calcPercentage(1500) : calcPercentage(300)
 
   const progressBarStyle = {
     width: progressPercentage + '%',
@@ -84,7 +89,7 @@ const CountDownTimer = () => {
             {new Date(countDownSecond * 1000).toISOString().substr(14, 5)}
           </h2>
 
-          <h2 className="title text-light">fist{/*TODO  */}</h2>
+          <h2 className="title text-light">{todoList[0].text}</h2>
         </div>
         <div className="progress-bar-container">
           <div className="progress-bar" style={progressBarStyle} />
@@ -92,11 +97,6 @@ const CountDownTimer = () => {
       </section>
     </>
   )
-}
-
-CountDownTimer.propTypes = {
-  onTimeUp: PropTypes.func,
-  seconds: PropTypes.number,
 }
 
 export default CountDownTimer

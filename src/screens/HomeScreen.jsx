@@ -1,13 +1,28 @@
+import { useSelector } from 'react-redux'
+import CountDownTimer from '../components/CountDownTimer'
 import Sidenav from '../components/Sidenav'
-import Main from '../components/Main'
+import TodoList from '../components/TodoList'
 
-const HomeScreen = () => {
+const Main = () => {
+  const mode = useSelector((state) => state.mode)
+
+  const background =
+    mode === 'work'
+      ? 'transparent linear-gradient(180deg, #FF6F61 0%, #FF4040 100%) 0% 0% no-repeat padding-box'
+      : 'transparent linear-gradient(180deg, #0AB6A2 0%, #009987 100%) 0% 0% no-repeat padding-box'
+
   return (
     <>
       <Sidenav />
-      <Main />
+      <main
+        className="justify-content-center align-items-center"
+        style={{ background }}
+      >
+        <CountDownTimer />
+        <TodoList />
+      </main>
     </>
   )
 }
 
-export default HomeScreen
+export default Main

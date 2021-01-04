@@ -2,9 +2,9 @@ main {
   width: 100%;
   height: auto;
   min-height: 100vh;
-  background: $backgroundColor;
   font-size: 20px;
   opacity: 0.8;
+  z-index: 1;
 }
 
 .clock-section,

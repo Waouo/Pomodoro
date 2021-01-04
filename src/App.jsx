@@ -1,13 +1,12 @@
 import ReactDom from 'react-dom'
-import HomeScreen from './screens/HomeScreen'
-import {Provider} from 'react-redux'
+import MainScreen from './screens/MainScreen'
+import { Provider } from 'react-redux'
 import store from './store'
 
 const App = () => {
-  
   return (
     <Provider store={store}>
-      <HomeScreen />
+      <MainScreen />
     </Provider>
   )
 }
