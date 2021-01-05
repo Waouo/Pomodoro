@@ -7,10 +7,13 @@ import {
   MODE_WORK,
   MODE_BREAK,
   TODO_LIST_REMOVE_TODO,
+  DONE_LIST_ADD_DONE,
+  DONE_LIST_PLUS_DONE_COUNTER,
 } from '../constant/constants'
+import { v4 as uuid } from 'uuid'
 
 const CountDownTimer = () => {
-  const [countDownSecond, setCountDownSecond] = useState(10)
+  const [countDownSecond, setCountDownSecond] = useState(3)
 
   const dispatch = useDispatch()
 
@@ -19,6 +22,8 @@ const CountDownTimer = () => {
   const mode = useSelector((state) => state.mode)
 
   const todoList = useSelector((state) => state.todoList)
+
+  const doneList = useSelector((state) => state.doneList)
 
   let countDownTimer
 
@@ -40,7 +45,7 @@ const CountDownTimer = () => {
     if (countDownSecond <= 0) {
       dispatch({ type: TIMER_STATE_OFF })
 
-      setCountDownSecond(10)
+      setCountDownSecond(3)
 
       if (mode === 'work') {
         dispatch({ type: MODE_BREAK })
@@ -48,6 +53,31 @@ const CountDownTimer = () => {
         const removedFirstTodoList = todoList.filter((_, index) => index !== 0)
 
         dispatch({ type: TODO_LIST_REMOVE_TODO, payload: removedFirstTodoList })
+
+        /** Add done list */
+        const existedDoneIndex = doneList.findIndex(
+          (x) => x.text === todoList[0].text
+        )
+
+        console.log(existedDoneIndex)
+        if (existedDoneIndex > -1) {
+          let colonDoneList = [...doneList]
+
+          colonDoneList[existedDoneIndex].counter += 1
+
+          console.log(colonDoneList)
+          dispatch({
+            type: DONE_LIST_PLUS_DONE_COUNTER,
+            payload: colonDoneList,
+          })
+        } else {
+          const newDone = {
+            id: uuid(),
+            text: todoList[0].text,
+            counter: 1,
+          }
+          dispatch({ type: DONE_LIST_ADD_DONE, payload: newDone })
+        }
       } else {
         dispatch({ type: MODE_WORK })
       }

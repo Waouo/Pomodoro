@@ -11,6 +11,9 @@ import {
   SCREEN_TODO_LIST,
   SCREEN_ANALYTICS,
   SCREEN_MUSIC,
+  DONE_LIST_ADD_DONE,
+  DONE_LIST_REMOVE_DONE,
+  DONE_LIST_PLUS_DONE_COUNTER,
 } from '../constant/constants'
 
 const screenReducer = (state = 'home', action) => {
@@ -59,7 +62,7 @@ const runningTodoReducer = (state = '', action) => {
   }
 }
 
-const todoListReducer = (state = [] , action) => {
+const todoListReducer = (state = [], action) => {
   switch (action.type) {
     case TODO_LIST_ADD_TODO:
       return [...state, action.payload]
@@ -72,10 +75,24 @@ const todoListReducer = (state = [] , action) => {
   }
 }
 
+const doneListReducer = (state = [], action) => {
+  switch (action.type) {
+    case DONE_LIST_ADD_DONE:
+      return [...state, action.payload]
+    case DONE_LIST_REMOVE_DONE:
+      return action.payload
+    case DONE_LIST_PLUS_DONE_COUNTER:
+      return action.payload
+    default:
+      return state
+  }
+}
+
 export {
   todoListReducer,
   modeReducer,
   timerStateReducer,
   runningTodoReducer,
   screenReducer,
+  doneListReducer,
 }

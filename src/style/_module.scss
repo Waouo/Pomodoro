@@ -15,6 +15,10 @@ $ColorTomato: #ff6f61;
   color: $ColorTomato;
 }
 
+.text-line-through {
+  text-decoration: line-through;
+}
+
 .rotate-left-90 {
   transform: matrix(0, -1, 1, 0, 0, 0);
 }
@@ -34,7 +38,6 @@ $ColorTomato: #ff6f61;
 .justify-content-sb {
   justify-content: space-between;
 }
-
 
 .btn-md {
   width: 40px;
@@ -75,12 +78,23 @@ $icon-background: (
   radio-dark: transparent url(../images/radio_button_unchecked-dark.svg) 0% 0%
     no-repeat padding-box,
   expand: transparent url(../images/expand_more.svg) 0% 0% no-repeat padding-box,
+  check-circle: transparent url(../images/check_circle.svg) 0% 0% no-repeat
+    padding-box,
 );
 
 @each $key, $value in $icon-background {
   .icon-#{$key} {
     background: $value;
   }
+}
+
+.circle-dark {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: 1em;
+  border-radius: 999em;
+  background: #998477 0% 0% no-repeat padding-box;
 }
 
 .mg-b-3 {

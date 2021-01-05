@@ -2,6 +2,7 @@ import { useState } from 'react'
 import NewTodo from '../components/NewTodo'
 import Sidenav from '../components/Sidenav'
 import TodoList from '../components/TodoList'
+import DoneList from '../components/DoneList'
 import TitleBar from '../components/TitleBar'
 
 const TodoListScreen = () => {
@@ -11,7 +12,7 @@ const TodoListScreen = () => {
   return (
     <>
       <Sidenav />
-      <main className="todo-section ">
+      <main className="todo-screen">
         <div className="d-flex justify-content-sb align-items-center mg-b-3">
           <h2 className="title text-tomato">TO-DO LIST</h2>
           <NewTodo
@@ -37,9 +38,12 @@ const TodoListScreen = () => {
         <section>
           <TitleBar
             title={'DONE'}
-            isCollapsedBtn={false}
+            isCollapsedBtn={true}
             handleCollapse={() => setIsDoneCollapsed(!isDoneNotCollapsed)}
           />
+          {isDoneNotCollapsed && (
+            <DoneList color={'#998477'} classIconRadio={'icon-check-circle'} />
+          )}
         </section>
       </main>
     </>

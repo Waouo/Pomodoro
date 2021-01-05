@@ -1,8 +1,18 @@
-.todo-section {
-  width: 55%;
-  padding-left: 23em;
-  padding-top: 7em;
+.todo-section,
+.todo-screen {
+  width: 70%;
+  padding-left: 18em;
   flex-wrap: wrap;
+}
+
+// @Screen Home
+.todo-section {
+  padding-top: 7em;
+}
+
+// @Screen Todo List
+.todo-screen {
+  padding-top: 2em;
 }
 
 .new-todo {
