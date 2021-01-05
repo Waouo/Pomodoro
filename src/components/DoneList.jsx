@@ -32,8 +32,8 @@ const DoneList = ({ color, classIconRadio }) => {
               </p>
             </div>
             <div className="d-flex align-items-center">
-              {[...Array(done.counter)].map((x) => (
-                <i key={x} className="circle-dark" />
+              {[...Array(done.counter)].map((_, i) => (
+                <i key={i} className="circle-dark" />
               ))}
             </div>
           </li>
