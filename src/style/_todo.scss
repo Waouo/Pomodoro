@@ -7,10 +7,10 @@
 
 .new-todo {
   width: 100%;
-  padding-bottom: 2em;
 }
 
-.todo-input,
+.todo-input-home,
+.todo-input-todoList,
 .todo-list {
   font: normal normal normal 20px/26px Roboto;
   text-transform: uppercase;
@@ -18,9 +18,10 @@
 
 // @Screen Home
 .todo-input-home {
-  width: 88%;
+  width: 85%;
   padding-left: 1.5em;
   border: 3px solid #ffffff;
+  color: white;
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.5);
@@ -29,9 +30,10 @@
 
 // @Screen Todo List
 .todo-input-todoList {
-  width: 88%;
+  width: 85%;
   padding-left: 1.5em;
   border: 3px solid #998477;
+  color: #998477;
 
   &::placeholder {
     color: #998477;

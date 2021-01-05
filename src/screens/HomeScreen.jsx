@@ -29,8 +29,13 @@ const HomeScreen = () => {
           <NewTodo
             classTodoInput={'todo-input-home'}
             classIconAdd={'icon-add'}
+            width={'100%'}
           />
-          <TodoList color={'white'} />
+          <TodoList
+            color={'white'}
+            classIconRadio={'icon-radio'}
+            classIconPlay={'icon-play-sm'}
+          />
         </section>
       </main>
     </>

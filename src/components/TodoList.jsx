@@ -4,13 +4,14 @@ import {
   TODO_LIST_CHANGE_TODO,
   RUNNING_TODO,
 } from '../constant/constants'
+import PropTypes from 'prop-types'
 
-// eslint-disable-next-line react/prop-types
-const TodoList = ({ color }) => {
-
+const TodoList = ({ color, classIconRadio, classIconPlay }) => {
   const dispatch = useDispatch()
 
   const todoList = useSelector((state) => state.todoList)
+
+  const screen = useSelector((state) => state.screen)
 
   const handleSelect = (selectedTodo) => {
     let colonTodoList = [...todoList]
@@ -32,34 +33,40 @@ const TodoList = ({ color }) => {
   }
 
   return (
-      <ul className="todo-list">
-        {todoList.map((todo, index) => {
-          if (index !== 0)
-            return (
-              <li
-                key={todo.id}
-                className="todo-thing d-flex align-items-center justify-content-sb"
-                style={{ borderBottom: `3px solid ${color}` }}
-              >
-                <div className="d-flex align-items-center">
-                  <button
-                    type="radio"
-                    className="icon-radio btn-md"
-                    onClick={() => handleRemove(todo.id)}
-                  />
-                  <p className="pd-l-3" style={{ color }}>
-                    {todo.text}
-                  </p>
-                </div>
-                <button
-                  className="icon-play-sm btn-md opacity-half"
-                  onClick={() => handleSelect(todo)}
-                />
-              </li>
-            )
-        })}
-      </ul>
+    <ul className="todo-list">
+      {todoList.map((todo, index) => {
+        if (screen === 'home' && index === 0) return
+        
+        return (
+          <li
+            key={todo.id}
+            className="todo-thing d-flex align-items-center justify-content-sb"
+            style={{ borderBottom: `3px solid ${color}` }}
+          >
+            <div className="d-flex align-items-center">
+              <button
+                className={`${classIconRadio} btn-md`}
+                onClick={() => handleRemove(todo.id)}
+              />
+              <p className="pd-l-3" style={{ color }}>
+                {todo.text}
+              </p>
+            </div>
+            <button
+              className={`${classIconPlay}  btn-md opacity-half`}
+              onClick={() => handleSelect(todo)}
+            />
+          </li>
+        )
+      })}
+    </ul>
   )
+}
+
+TodoList.propTypes = {
+  color: PropTypes.string.isRequired,
+  classIconRadio: PropTypes.string.isRequired,
+  classIconPlay: PropTypes.string.isRequired,
 }
 
 export default TodoList
