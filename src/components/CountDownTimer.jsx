@@ -13,17 +13,11 @@ import {
 import { v4 as uuid } from 'uuid'
 
 const CountDownTimer = () => {
-  const [countDownSecond, setCountDownSecond] = useState(3)
+  const [countDownSecond, setCountDownSecond] = useState(5)
 
   const dispatch = useDispatch()
 
-  const timerState = useSelector((state) => state.timerState)
-
-  const mode = useSelector((state) => state.mode)
-
-  const todoList = useSelector((state) => state.todoList)
-
-  const doneList = useSelector((state) => state.doneList)
+  const { timerState, mode, todoList, doneList } = useSelector((state) => state)
 
   let countDownTimer
 
@@ -45,7 +39,7 @@ const CountDownTimer = () => {
     if (countDownSecond <= 0) {
       dispatch({ type: TIMER_STATE_OFF })
 
-      setCountDownSecond(3)
+      setCountDownSecond(1)
 
       if (mode === 'work') {
         dispatch({ type: MODE_BREAK })
@@ -59,13 +53,11 @@ const CountDownTimer = () => {
           (x) => x.text === todoList[0].text
         )
 
-        console.log(existedDoneIndex)
         if (existedDoneIndex > -1) {
           let colonDoneList = [...doneList]
 
           colonDoneList[existedDoneIndex].counter += 1
 
-          console.log(colonDoneList)
           dispatch({
             type: DONE_LIST_PLUS_DONE_COUNTER,
             payload: colonDoneList,
@@ -76,6 +68,7 @@ const CountDownTimer = () => {
             text: todoList[0].text,
             counter: 1,
           }
+
           dispatch({ type: DONE_LIST_ADD_DONE, payload: newDone })
         }
       } else {
@@ -112,7 +105,7 @@ const CountDownTimer = () => {
           {new Date(countDownSecond * 1000).toISOString().substr(14, 5)}
         </h2>
 
-        <h2 className="title text-light">{todoList[0].text}</h2>
+        <h2 className="title text-light">{todoList[0] && todoList[0].text}</h2>
       </div>
       <div className="progress-bar-container">
         <div className="progress-bar" style={progressBarStyle} />
