@@ -4,7 +4,8 @@ import TodoList from '../components/TodoList'
 import DoneList from '../components/DoneList'
 import TitleBar from '../components/TitleBar'
 
-const TodoListScreen = () => {
+// eslint-disable-next-line react/prop-types
+const TodoListScreen = ({ location }) => {
   const [isTodoNotCollapsed, setIsTodoCollapsed] = useState(true)
   const [isDoneNotCollapsed, setIsDoneCollapsed] = useState(true)
 
@@ -30,6 +31,7 @@ const TodoListScreen = () => {
               color={'#998477'}
               classIconRadio={'icon-radio-dark'}
               classIconPlay={'icon-play-dark'}
+              location={location}
             />
           )}
         </section>

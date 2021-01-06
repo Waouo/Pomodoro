@@ -6,7 +6,7 @@ import {
   RUNNING_TODO,
 } from '../constant/constants'
 
-const TodoList = ({ color, classIconRadio, classIconPlay }) => {
+const TodoList = ({ color, classIconRadio, classIconPlay,location }) => {
   const dispatch = useDispatch()
 
   const { todoList, screen } = useSelector((state) => state)
@@ -33,28 +33,29 @@ const TodoList = ({ color, classIconRadio, classIconPlay }) => {
   return (
     <ul className="todo-list">
       {todoList.map((todo, index) => {
-        if (screen === 'home' && index === 0) return
+        if (location.pathname === '/' && index === 0) return
 
         return (
-          <li
-            key={todo.id}
-            className="todo-thing d-flex align-items-center justify-content-sb"
-            style={{ borderBottom: `3px solid ${color}` }}
-          >
-            <div className="d-flex align-items-center">
+         
+            <li
+              key={todo.id}
+              className="todo-thing d-flex align-items-center justify-content-sb"
+              style={{ borderBottom: `3px solid ${color}` }}
+            >
+              <div className="d-flex align-items-center">
+                <button
+                  className={`${classIconRadio} btn-md`}
+                  onClick={() => handleRemove(todo.id)}
+                />
+                <p className="pd-l-3" style={{ color }}>
+                  {todo.text}
+                </p>
+              </div>
               <button
-                className={`${classIconRadio} btn-md`}
-                onClick={() => handleRemove(todo.id)}
+                className={`${classIconPlay}  btn-md opacity-half`}
+                onClick={() => handleSelect(todo)}
               />
-              <p className="pd-l-3" style={{ color }}>
-                {todo.text}
-              </p>
-            </div>
-            <button
-              className={`${classIconPlay}  btn-md opacity-half`}
-              onClick={() => handleSelect(todo)}
-            />
-          </li>
+            </li>
         )
       })}
     </ul>
@@ -65,6 +66,7 @@ TodoList.propTypes = {
   color: PropTypes.string.isRequired,
   classIconRadio: PropTypes.string.isRequired,
   classIconPlay: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
 }
 
 export default TodoList

@@ -3,7 +3,8 @@ import CountDownTimer from '../components/CountDownTimer'
 import NewTodo from '../components/NewTodo'
 import TodoList from '../components/TodoList'
 
-const HomeScreen = () => {
+// eslint-disable-next-line react/prop-types
+const HomeScreen = ({ location }) => {
   const mode = useSelector((state) => state.mode)
 
   const background =
@@ -13,13 +14,13 @@ const HomeScreen = () => {
 
   return (
     <>
-      {/** preload icon image **/}
-      <div
-        className="icon-pause"
-        style={{ position: 'absolute', top: '-9999px', left: '-9999px' }}
-      ></div>
-      {/** preload icon image **/}
       <main style={{ background }}>
+        {/** preload icon image **/}
+        <div
+          className="icon-pause"
+          style={{ position: 'absolute', top: '-9999px', left: '-9999px' }}
+        ></div>
+        {/** preload icon image **/}
         <section className="clock-section">
           <CountDownTimer />
         </section>
@@ -33,6 +34,7 @@ const HomeScreen = () => {
             color={'white'}
             classIconRadio={'icon-radio'}
             classIconPlay={'icon-play-sm'}
+            location={location}
           />
         </section>
       </main>
