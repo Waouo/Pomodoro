@@ -1,11 +1,5 @@
-import Sidenav from '../components/Sidenav'
-
 const AnalyticsScreen = () => {
-  return (
-    <>
-      <Sidenav/>
-    </>
-  )
+  return <></>
 }
 
 export default AnalyticsScreen

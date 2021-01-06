@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { CSSTransition } from 'react-transition-group'
 import PropTypes from 'prop-types'
 import {
   TODO_LIST_REMOVE_TODO,
@@ -37,26 +36,25 @@ const TodoList = ({ color, classIconRadio, classIconPlay }) => {
         if (screen === 'home' && index === 0) return
 
         return (
-         
-            <li
-              key={todo.id}
-              className="todo-thing d-flex align-items-center justify-content-sb"
-              style={{ borderBottom: `3px solid ${color}` }}
-            >
-              <div className="d-flex align-items-center">
-                <button
-                  className={`${classIconRadio} btn-md`}
-                  onClick={() => handleRemove(todo.id)}
-                />
-                <p className="pd-l-3" style={{ color }}>
-                  {todo.text}
-                </p>
-              </div>
+          <li
+            key={todo.id}
+            className="todo-thing d-flex align-items-center justify-content-sb"
+            style={{ borderBottom: `3px solid ${color}` }}
+          >
+            <div className="d-flex align-items-center">
               <button
-                className={`${classIconPlay}  btn-md opacity-half`}
-                onClick={() => handleSelect(todo)}
+                className={`${classIconRadio} btn-md`}
+                onClick={() => handleRemove(todo.id)}
               />
-            </li>
+              <p className="pd-l-3" style={{ color }}>
+                {todo.text}
+              </p>
+            </div>
+            <button
+              className={`${classIconPlay}  btn-md opacity-half`}
+              onClick={() => handleSelect(todo)}
+            />
+          </li>
         )
       })}
     </ul>

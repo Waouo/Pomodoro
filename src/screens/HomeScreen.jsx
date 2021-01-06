@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux'
 import CountDownTimer from '../components/CountDownTimer'
-import Sidenav from '../components/Sidenav'
 import NewTodo from '../components/NewTodo'
 import TodoList from '../components/TodoList'
 
@@ -20,7 +19,6 @@ const HomeScreen = () => {
         style={{ position: 'absolute', top: '-9999px', left: '-9999px' }}
       ></div>
       {/** preload icon image **/}
-      <Sidenav />
       <main style={{ background }}>
         <section className="clock-section">
           <CountDownTimer />

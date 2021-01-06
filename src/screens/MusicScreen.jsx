@@ -1,11 +1,5 @@
-import Sidenav from '../components/Sidenav'
-
 const MusicScreen = () => {
-  return (
-    <>
-      <Sidenav/>
-    </>
-  )
+  return <></>
 }
 
 export default MusicScreen

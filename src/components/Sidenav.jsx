@@ -5,6 +5,7 @@ import {
   SCREEN_ANALYTICS,
   SCREEN_MUSIC,
 } from '../constant/constants'
+import { Link } from 'react-router-dom'
 
 const Sidenav = () => {
   const mode = useSelector((state) => state.mode)
@@ -19,22 +20,34 @@ const Sidenav = () => {
   return (
     <nav id="sidenav" style={{ background }}>
       <h1 className="title text-light rotate-left-90">POMODORO</h1>
-      <button
-        onClick={() => dispatch({ type: SCREEN_HOME })}
-        className=" sidenav-btn btn-schedule icon-schedule btn-lg bg-transparent"
-      />
-      <button
-        onClick={() => dispatch({ type: SCREEN_TODO_LIST })}
-        className="sidenav-btn btn-list icon-list btn-lg bg-transparent"
-      />
-      <button
-        onClick={() => dispatch({ type: SCREEN_ANALYTICS })}
-        className="sidenav-btn btn-assessment icon-assessment  btn-lg bg-transparent"
-      />
-      <button
-        onClick={() => dispatch({ type: SCREEN_MUSIC })}
-        className="sidenav-btn btn-music icon-music btn-lg bg-transparent"
-      />
+
+      <Link to={'/'}>
+        <button
+          onClick={() => dispatch({ type: SCREEN_HOME })}
+          className=" sidenav-btn btn-schedule icon-schedule btn-lg bg-transparent"
+        />
+      </Link>
+
+      <Link to={'/todo'}>
+        <button
+          onClick={() => dispatch({ type: SCREEN_TODO_LIST })}
+          className="sidenav-btn btn-list icon-list btn-lg bg-transparent"
+        />
+      </Link>
+
+      <Link to={'/analytics'}>
+        <button
+          onClick={() => dispatch({ type: SCREEN_ANALYTICS })}
+          className="sidenav-btn btn-assessment icon-assessment  btn-lg bg-transparent"
+        />
+      </Link>
+
+      <Link to={'/music'}>
+        <button
+          onClick={() => dispatch({ type: SCREEN_MUSIC })}
+          className="sidenav-btn btn-music icon-music btn-lg bg-transparent"
+        />
+      </Link>
     </nav>
   )
 }
