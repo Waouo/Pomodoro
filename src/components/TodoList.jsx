@@ -9,7 +9,7 @@ import {
 const TodoList = ({ color, classIconRadio, classIconPlay,location }) => {
   const dispatch = useDispatch()
 
-  const { todoList, screen } = useSelector((state) => state)
+  const { todoList } = useSelector((state) => state)
 
   const handleSelect = (selectedTodo) => {
     let colonTodoList = [...todoList]
