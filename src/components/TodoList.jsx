@@ -32,34 +32,38 @@ const TodoList = ({ color, classIconRadio, classIconPlay, location }) => {
   }
 
   return (
-    <TransitionGroup component={'ul'} className="todo-list">
-      {todoList.map((todo, index) => {
-        if (location.pathname === '/' && index === 0) return
-        return (
-          <CSSTransition timeout={500} classNames={'fade'} key={todo.id}>
-            <li
+      <TransitionGroup component={'ul'} className="todo-list">
+        {todoList.map((todo, index) => {
+          if (location.pathname === '/' && index === 0) return
+          return (
+            <CSSTransition
+              timeout={500}
+              classNames={'animation-fade'}
               key={todo.id}
-              className="todo-thing d-flex align-items-center justify-content-sb"
-              style={{ borderBottom: `3px solid ${color}` }}
             >
-              <div className="d-flex align-items-center">
+              <li
+                key={todo.id}
+                className="todo-thing d-flex align-items-center justify-content-sb"
+                style={{ borderBottom: `3px solid ${color}` }}
+              >
+                <div className="d-flex align-items-center">
+                  <button
+                    className={`${classIconRadio} btn-md`}
+                    onClick={() => handleRemove(todo.id)}
+                  />
+                  <p className="pd-l-3" style={{ color }}>
+                    {todo.text}
+                  </p>
+                </div>
                 <button
-                  className={`${classIconRadio} btn-md`}
-                  onClick={() => handleRemove(todo.id)}
+                  className={`${classIconPlay}  btn-md opacity-half`}
+                  onClick={() => handleSelect(todo)}
                 />
-                <p className="pd-l-3" style={{ color }}>
-                  {todo.text}
-                </p>
-              </div>
-              <button
-                className={`${classIconPlay}  btn-md opacity-half`}
-                onClick={() => handleSelect(todo)}
-              />
-            </li>
-          </CSSTransition>
-        )
-      })}
-    </TransitionGroup>
+              </li>
+            </CSSTransition>
+          )
+        })}
+      </TransitionGroup>
   )
 }
 

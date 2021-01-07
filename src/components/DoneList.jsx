@@ -18,7 +18,7 @@ const DoneList = ({ color, classIconRadio }) => {
     <TransitionGroup component={'ul'} className="todo-list">
       {doneList.map((done) => {
         return (
-          <CSSTransition timeout={500} classNames={'fade'} key={done.id}>
+          <CSSTransition timeout={500} classNames={'animation-fade'} key={done.id}>
             <li
               key={done.id}
               className="todo-thing d-flex justify-content-sb align-items-center"

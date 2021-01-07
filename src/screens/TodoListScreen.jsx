@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { CSSTransition } from 'react-transition-group'
 import NewTodo from '../components/NewTodo'
 import TodoList from '../components/TodoList'
 import DoneList from '../components/DoneList'
@@ -6,8 +7,8 @@ import TitleBar from '../components/TitleBar'
 
 // eslint-disable-next-line react/prop-types
 const TodoListScreen = ({ location }) => {
-  const [isTodoNotCollapsed, setIsTodoCollapsed] = useState(true)
-  const [isDoneNotCollapsed, setIsDoneCollapsed] = useState(true)
+  const [showTodo, setShowTodo] = useState(true)
+  const [showDone, setShowDone] = useState(true)
 
   return (
     <>
@@ -24,26 +25,36 @@ const TodoListScreen = ({ location }) => {
           <TitleBar
             title={'TO DO'}
             isCollapsedBtn={true}
-            handleCollapse={() => setIsTodoCollapsed(!isTodoNotCollapsed)}
+            handleCollapse={() => setShowTodo(!showTodo)}
           />
-          {isTodoNotCollapsed && (
+          <CSSTransition
+            in={showTodo}
+            timeout={300}
+            classNames="animation-collapse"
+            unmountOnExit
+          >
             <TodoList
               color={'#998477'}
               classIconRadio={'icon-radio-dark'}
               classIconPlay={'icon-play-dark'}
               location={location}
             />
-          )}
+          </CSSTransition>
         </section>
         <section>
           <TitleBar
             title={'DONE'}
             isCollapsedBtn={true}
-            handleCollapse={() => setIsDoneCollapsed(!isDoneNotCollapsed)}
+            handleCollapse={() => setShowDone(!showDone)}
           />
-          {isDoneNotCollapsed && (
+          <CSSTransition
+            in={showDone}
+            timeout={300}
+            classNames="animation-collapse"
+            unmountOnExit
+          >
             <DoneList color={'#998477'} classIconRadio={'icon-check-circle'} />
-          )}
+          </CSSTransition>
         </section>
       </main>
     </>

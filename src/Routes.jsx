@@ -10,7 +10,7 @@ const Routes = withRouter(({ location }) => {
   return (
     <TransitionGroup>
       <CSSTransition
-        classNames={'forward'}
+        classNames={'animation-forward'}
         timeout={500}
         key={location.pathname}
       >
