@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import {
   TODO_LIST_REMOVE_TODO,
   TODO_LIST_CHANGE_TODO,
   RUNNING_TODO,
 } from '../constant/constants'
 
-const TodoList = ({ color, classIconRadio, classIconPlay,location }) => {
+const TodoList = ({ color, classIconRadio, classIconPlay, location }) => {
   const dispatch = useDispatch()
 
   const { todoList } = useSelector((state) => state)
@@ -31,12 +32,11 @@ const TodoList = ({ color, classIconRadio, classIconPlay,location }) => {
   }
 
   return (
-    <ul className="todo-list">
+    <TransitionGroup component={'ul'} className="todo-list">
       {todoList.map((todo, index) => {
         if (location.pathname === '/' && index === 0) return
-
         return (
-         
+          <CSSTransition timeout={500} classNames={'fade'} key={todo.id}>
             <li
               key={todo.id}
               className="todo-thing d-flex align-items-center justify-content-sb"
@@ -56,9 +56,10 @@ const TodoList = ({ color, classIconRadio, classIconPlay,location }) => {
                 onClick={() => handleSelect(todo)}
               />
             </li>
+          </CSSTransition>
         )
       })}
-    </ul>
+    </TransitionGroup>
   )
 }
 

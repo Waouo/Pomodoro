@@ -1,6 +1,13 @@
 $transitionTime: 500ms;
 
 /* 路由前進時的入場/退場動畫 */
+.forward-enter,
+.forward-exit {
+  position: absolute !important;
+  top: 0;
+  width: 100%;
+}
+
 .forward-enter {
   opacity: 0;
   transform: translateX(100%);
@@ -23,31 +30,21 @@ $transitionTime: 500ms;
   transition: all $transitionTime;
 }
 
-/* 路由後退時的入場/退場動畫 */
-.back-enter {
+/* 增加/刪除清單時的入場/退場動畫 */
+.fade-enter {
   opacity: 0;
-  transform: translateX(-100%);
 }
 
-.back-enter-active {
+.fade-enter-active {
   opacity: 1;
-  transform: translateX(0);
-  transition: all $transitionTime;
+  transition: opacity $transitionTime ease-in;
 }
 
-.back-exit {
+.fade-exit {
   opacity: 1;
-  transform: translateX(0);
 }
 
-.back-exit-active {
+.fade-exit-active {
   opacity: 0;
-  transform: translate(100%);
-  transition: all $transitionTime;
-}
-
-.forward-enter, .forward-exit, .back-enter, .back-exit {
-  position: absolute !important;
-  top: 0;
-  width: 100%;
+  transition: opacity $transitionTime ease-in;
 }
