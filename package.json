@@ -1,11 +1,12 @@
 {
   "name": "frontend",
+  "proxy": "http://127.0.0.1:5000",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode development",
-    "serve": "npx webpack-cli serve"
+    "build": "webpack --mode development  --progress",
+    "start": "npx webpack-cli serve"
   },
   "keywords": [],
   "author": "",
